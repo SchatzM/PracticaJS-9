@@ -1,5 +1,5 @@
 @charset "UTF-8";
 
 .alertaColor {
-	transition: background-color 0.8s ease;
+	transition: background-color 0.8s ease-in-out; /* Efecto de transición suave entre colores de fondo al cambiarlos */
 }
