@@ -84,5 +84,4 @@ class Usuario { // Clase que incluye la estructura de los datos y método para o
 	};
 };
 
-
 registrarEventos (); // Registramos eventos ligados al formulario
