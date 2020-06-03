@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="is-clipped">
 	<head>
 		<!-- Metadatos Web -->
 		<meta charset="UTF-8" />
@@ -34,59 +34,70 @@
 		<!-- Nuestro Framework de CSS preferido, mi preferido es BULMA -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css" integrity="sha384-ot6RguV46OXVI/scORL3MF0W76aCi4XLFeX3mRArMs/+rNzCpVaOFDtfitKy47nn" crossorigin="anonymous">
 
+		<!-- Restauramos los valores de css definidos por el navegador -->
+		<link rel="stylesheet" href="css/reset.css" />
+
 		<!-- Nuestro CSS Compilado a través de SASS ó sin compilar solo CSS básico -->
 		<link rel="stylesheet" href="css/estilos.css" />
 
 	</head>
 	<body>
-		<header>
-			<!--
-				*
-				* Bloque HEADER
-				*
-			-->
-					 <figure id="logo">
-						<!--
-						 *
-						 * Bloque LOGO
-						 *
-						-->
-								<img src="" alt="">
-					 </figure>
-
-					 <nav id="navegacionPrincipal">
-						<!--
-						 *
-						 * Bloque Links de Navegación Principal
-						 *
-						-->
-					</nav>
-
-		</header>
-
 		<main>
-			<!--
-				*
-				* Bloque MAIN
-				*
-			-->
+			<section class="hero is-dark is-fullheight">
+				<div class="hero-head">
+					<nav class="navbar">
+						<div class="container">
+							<div class="navbar-brand">
+								<a class="navbar-item is-capitalized">
+									<span class="is-3">práctica 12 - WebApp policía</span>
+								</a>
+							</div>
+							<div id="navbarMenuHeroB" class="navbar-menu">
+								<div class="navbar-end is-capitalized">
+									<a class="navbar-item is-active">comprobar DNI</a>
+									<a class="navbar-item">buscar usuario</a>
+									<a class="navbar-item">configuración</a>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</div>
 
-					<section>
-						<!--
-						 *
-						 * Bloque SECTION
-						 *
-						-->
-					</section>
+				<div class="hero-body">
+					<div class="container has-text-centered">
+						<section class="section">
+							<div class="columns">
+								<div class="column is-half is-offset-one-quarter">
+									<div class="container">
+										<h1 class="title is-uppercase">comprobar DNI</h1>
+										<h2 class="subtitle">Introduce los datos a comprobar.</h2>
+										<div class="field">
+											<div class="control has-icons-left">
+												<input class="input is-medium" type="text" name="nombreUsuario" placeholder="Nombre del usuario">
+												<span class="icon is-small is-left">
+													<i class="fas fa-user-tag"></i>
+												</span>
+											</div>
+										</div>
+										<div class="field">
+											<div class="control has-icons-left">
+												<input class="input is-medium" type="text" name="numeroDNI" placeholder="Número de DNI del usuario">
+												<span class="icon is-small is-left">
+													<i class="fas fa-id-card"></i>
+												</span>
+											</div>
+										</div>
+										<div class="buttons are-medium is-grouped is-centered">
+											<button class="button is-uppercase is-info is-fullwidth">comprobar</button>
+										</div>
+									</div>
+								</div>
+							  </div>
 
-					<article>
-						<!--
-						 *
-						 * Bloque ARTICLE
-						 *
-						-->
-					</article>
-
+						  </section>
+					</div>
+				</div>
+			  </section>
 		</main>
 
 		<footer>
