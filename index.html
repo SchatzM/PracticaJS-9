@@ -43,7 +43,7 @@
 	</head>
 	<body>
 		<main>
-			<section class="hero is-dark is-fullheight">
+			<section class="hero is-dark is-bold is-fullheight">
 				<div class="hero-head">
 					<nav class="navbar">
 						<div class="container">
@@ -71,25 +71,28 @@
 									<div class="container">
 										<h1 class="title is-uppercase">comprobar DNI</h1>
 										<h2 class="subtitle">Introduce los datos a comprobar.</h2>
-										<div class="field">
-											<div class="control has-icons-left">
-												<input class="input is-medium" type="text" name="nombreUsuario" placeholder="Nombre del usuario">
-												<span class="icon is-small is-left">
-													<i class="fas fa-user-tag"></i>
-												</span>
+										<form name="comprobarDNI">
+											<div class="field">
+												<div class="control has-icons-left">
+													<input class="input is-medium" type="text" name="nombreUsuario" placeholder="Nombre del usuario" maxlength="25" minlength="1" required>
+													<span class="icon is-small is-left">
+														<i class="fas fa-user-tag"></i>
+													</span>
+												</div>
+												<p class="is-hidden help has-text-left is-danger">Usuario no válido</p>
 											</div>
-										</div>
-										<div class="field">
-											<div class="control has-icons-left">
-												<input class="input is-medium" type="text" name="numeroDNI" placeholder="Número de DNI del usuario">
-												<span class="icon is-small is-left">
-													<i class="fas fa-id-card"></i>
-												</span>
+											<div class="field is-grouped">
+												<p class="control has-icons-left is-expanded">
+													<input class="input is-medium is-fullwidth" type="text" name="numeroDNI" placeholder="00000000X" maxlength="9" minlength="9" required>
+													<span class="icon is-left">
+														<i class="fas fa-id-card"></i>
+													</span>
+												</p>
+												<div class="buttons are-medium">
+													<button class="button is-uppercase has-text-weight-semibold is-info is-fullwidth" name="comprobarDatos">comprobar</button>
+												</div>
 											</div>
-										</div>
-										<div class="buttons are-medium is-grouped is-centered">
-											<button class="button is-uppercase is-info is-fullwidth" name="comprobarDatos">comprobar</button>
-										</div>
+										</form>
 									</div>
 								</div>
 							  </div>
