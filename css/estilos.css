@@ -1,1 +1,5 @@
 @charset "UTF-8";
+
+.alertaColor {
+	transition: background-color 0.8s ease;
+}
