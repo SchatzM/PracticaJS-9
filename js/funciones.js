@@ -15,14 +15,18 @@ const	elemento = {
 		},
 		registrarEventos = () => { // Función que registra los diferentes eventos utilizados
 			elemento.formularioComprobar.addEventListener ('submit', (evento) => { // Evento ejecutado al pulsar el botón 'comprobar' dentro del formulario
-				evento.preventDefault(); // Función que evita que la página se recargue al pulsar el botón (funcionalidad por defecto de los formularios)
 				let usuario = new Usuario (); // Instancia de la clase Usuario que contiene la estructura de los datos y métodos que obtienen y procesan los datos introducidos en el formulario
 
+				evento.preventDefault(); // Función para evitar que la página se recargue al pulsar el botón (funcionalidad por defecto de los formularios)
 				usuario.procesarDatos(); // Inicia el proceso de obtención y procesamiento de los datos introducidos en el formulario
 			});
 
 			elemento.formularioComprobar.addEventListener ('click', () => { // Evento ejecutado al hacer click sobre el formulario y sus elementos
-				alertaDatos	(2); // Llamamos a la función que restaura ciertos valores de algunos elementos a su estado original (si han sido modificados)
+				alertaDatos	(2); // Llamamos a la función que restaura ciertos valores de algunos elementos del formulario a su estado original (si han sido modificados)
+			});
+
+			elemento.formularioComprobar.addEventListener ('keydown', () => { // Evento ejecutado al escribir sobre el formulario y sus elementos
+				alertaDatos	(2); // Llamamos a la función que restaura ciertos valores de algunos elementos del formulario a su estado original (si han sido modificados)
 			});
 		},
 		obtenerLetraDNI = (númeroDNI) => { // Función para obtener la letra correspondiente al número de DNI dado
