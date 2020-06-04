@@ -22,7 +22,7 @@ const	elemento = {
 			});
 
 			elemento.formularioComprobar.addEventListener ('click', () => { // Evento ejecutado al hacer click sobre el formulario y sus elementos
-				restaurarEstadoFormulario	(); // Llamamos a la función que restaura ciertos valores de algunos elementos a su estado original (si han sido modificados)
+				alertaDatos	(2); // Llamamos a la función que restaura ciertos valores de algunos elementos a su estado original (si han sido modificados)
 			});
 		},
 		obtenerLetraDNI = (númeroDNI) => { // Función para obtener la letra correspondiente al número de DNI dado
@@ -32,27 +32,18 @@ const	elemento = {
 																														// según el resto de la operación módulo 23
 																														// (cantidad de letras diferentes en array) del númeroDNI
 		},
-		alertaDatos = (booleano) => { // Función que modifican el aspecto de algunos elementos del DOM según el tipo de resultado obtenido en la función que procesa la información sobre el DNI comprobado
-			let elementosAlerta = document.body.querySelectorAll ('.alertaColor'); // Obtenemos todos los elementos con la clase asignada para las alertas 'alertaColor'
+		alertaDatos = (resultado) => { // Función que modifican el aspecto de algunos elementos del DOM según el tipo de resultado obtenido en la función que procesa la información sobre el DNI comprobado
+			let	clasesAlerta = ['is-success', 'has-background-success', 'is-danger', 'has-background-danger'],
+				elementosAlerta = document.body.querySelectorAll ('.alertaColor'); // Obtenemos todos los elementos con la clase asignada para las alertas 'alertaColor'
 
 			Object.entries (elementosAlerta).forEach (([llave, elemento]) => { // Iteramos entre todos los elementos de alerta
-				booleano ? elemento.classList.add ('is-success', 'has-background-success') : elemento.classList.add ('is-danger', 'has-background-danger'); // Añadimos las clases que denotan éxito/correcto/sin fallos (fondo y borde verde) o las de error (fondo y borde rojo)
+				resultado != 2 ? resultado ? elemento.classList.add (clasesAlerta[0], clasesAlerta[1]) : elemento.classList.add (clasesAlerta[2], clasesAlerta[3]) : elemento.classList.remove (...clasesAlerta); // Según el tipo de resultado (0, 1 o 2) añadimos las clases que denotan error/incorrecto/fallo (fondo y borde rojo); las de éxito/correcto/sin fallos (fondo y borde verde) o restauramos los valores originales
 			});
 
-			elemento.botónFormulario.innerText = booleano ? 'correcto' : 'incorrecto'; // Cambiamos el texto del botón
-			elemento.botónFormulario.disabled = true; // Desactivamos el botón para evitar llamadas consecutivas
+			elemento.botónFormulario.innerText = resultado != 2 ? resultado ? 'correcto' : 'incorrecto' : 'comprobar'; // Cambiamos el texto del botón según corresponda
+			elemento.botónFormulario.disabled = resultado != 2 ? true : false; // Desactivamos el botón para evitar llamadas consecutivas
 
-			return booleano ? console.info ('Datos correctos') : console.error ('Datos incorrectos'); // Mostramos en consola si los datos son correctos o no
-		},
-		restaurarEstadoFormulario = () => { // Función que restaura el aspecto de los elementos modificados por la función 'alertaDatos' a sus valores originales
-			let elementosARestaurar = document.body.querySelectorAll ('.is-danger, .is-success'); // Obtenemos los elementos con las clases que modifican el aspecto en 'alertaDatos'
-
-			Object.entries (elementosARestaurar).forEach (([llave, elemento]) => { // Iteramos entre los elementos
-				elemento.classList.remove ('is-danger', 'has-background-danger', 'is-success', 'has-background-success'); // Eliminamos las clases pertinentes para restaurar el aspecto original de los elementos
-			});
-
-			elemento.botónFormulario.innerText = 'comprobar'; // Restaura el texto original del botón
-			elemento.botónFormulario.disabled = false; // Reactivamos el botón
+			return resultado != 2 ? resultado ? console.info ('Datos correctos') : console.error ('Datos incorrectos') : console.info ('Formulario restaurado'); // Mostramos en consola si los datos son correctos, incorrectos o se ha restaurado el formulario
 		};
 class Usuario { // Clase que incluye la estructura de los datos y método para obtener y procesar los datos proporcionados a través del formulario principal
 	constructor (
@@ -75,12 +66,12 @@ class Usuario { // Clase que incluye la estructura de los datos y método para o
 	procesarDatos () { // Inicia el proceso de obtención y procesamiento de los datos del formulario
 		let	DNI = this.DNI, // Almacena DNI (número y letra)
 			númeroDNI = DNI.substring (0, DNI.length-1), // Separamos los números de la letra del DNI
-			letraDNI = DNI.slice (-1).toUpperCase (), // Separamos la letra del DNI
+			letraDNI = DNI.slice (-1).toUpperCase (), // Separamos la letra del DNI y forzamos la mayúscula
 			letraDNICorrecta = obtenerLetraDNI (númeroDNI); // Obtenemos la letra correspondiente al número usando nuestra función para ello
 
-		console.info (`Nombre: ${this.nombre} con DNI número ${this.DNI}; según nuestro sistema le corresponde la letra: ${letraDNICorrecta}.`); // Mostramos un resumen de los datos en consola
+		console.info (`Nombre: ${this.nombre} con DNI número ${DNI}; según nuestro sistema le corresponde la letra: ${letraDNICorrecta}.`); // Mostramos un resumen de los datos en consola
 
-		return (letraDNI == letraDNICorrecta) ? alertaDatos (true) : alertaDatos (false); // Llama a la función que modifica el aspecto de algunos elementos dependiendo de si el DNI es correcto o no
+		return (letraDNI == letraDNICorrecta) ? alertaDatos (1) : alertaDatos (0); // Llama a la función que modifica el aspecto de algunos elementos dependiendo de si el DNI es correcto o no
 	};
 };
 
